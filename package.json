@@ -1,0 +1,7 @@
+{
+  "name": "aurora-motors-showroom",
+  "version": "1.0.0",
+  "description": "Interactive, responsive EV showroom built with HTML, CSS and JS",
+  "scripts": { "start": "npx serve ." },
+  "license": "MIT"
+}
