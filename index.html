@@ -4,42 +4,47 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Aurora Motors – Electric Car Showroom</title>
+<meta name="description" content="Explore, compare and finance the Aurora electric line-up. Book a test drive today.">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <header class="nav">
-  <div class="logo">⚡ Aurora<span>Motors</span></div>
+  <a href="#top" class="logo">⚡ Aurora<span>Motors</span></a>
   <nav id="menu">
-    <a href="#catalog">Catalog</a>
+    <a href="#catalog">Models</a>
     <a href="#compare">Compare</a>
     <a href="#finance">Finance</a>
+    <a href="#contact">Test drive</a>
   </nav>
   <div class="nav-actions">
     <button id="themeBtn" class="icon-btn" aria-label="Toggle theme">🌓</button>
-    <button id="favBtn" class="icon-btn" aria-label="Favorites">♥ <b id="favCount">0</b></button>
+    <button id="favBtn" class="icon-btn" aria-label="Show favorites">♥ <b id="favCount">0</b></button>
     <button id="burger" class="icon-btn burger" aria-label="Menu">☰</button>
   </div>
 </header>
 
-<section class="hero">
-  <div class="hero-text">
-    <p class="eyebrow">The future is electric</p>
-    <h1>Find your next <em>electric</em> ride.</h1>
-    <p>Explore, filter, compare and finance premium EVs — all in one place.</p>
-    <a href="#catalog" class="btn">Browse cars</a>
-  </div>
-  <div class="hero-stats">
-    <div><b data-count="6">0</b><span>Models</span></div>
-    <div><b data-count="650">0</b><span>Max range (km)</span></div>
-    <div><b data-count="2">0</b><span>s Fastest 0-100</span></div>
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <p class="eyebrow">2026 line-up · Now in showroom</p>
+      <h1>Drive the <em>electric</em> future.</h1>
+      <p>Six premium EVs. Up to 650&nbsp;km of range. Book a test drive in minutes.</p>
+      <div class="cta"><a href="#catalog" class="btn">Explore models</a><a href="#contact" class="btn ghost">Book test drive</a></div>
+    </div>
+    <div class="hero-stats">
+      <div><b data-count="6">0</b><span>Models</span></div>
+      <div><b data-count="650">0</b><span>Max range (km)</span></div>
+      <div><b data-count="320">0</b><span>Max DC kW</span></div>
+    </div>
   </div>
 </section>
 
 <main>
 <section id="catalog">
-  <h2>Catalog</h2>
+  <h2>Our models</h2>
   <div class="filters">
-    <input id="search" type="search" placeholder="Search models…">
+    <input id="search" type="search" placeholder="Search models…" aria-label="Search">
     <div id="chips" class="chips">
       <button class="chip active" data-type="all">All</button>
       <button class="chip" data-type="Sedan">Sedan</button>
@@ -50,7 +55,7 @@
     <label class="range">Max price: <b id="priceVal"></b>
       <input id="price" type="range" min="20000" max="150000" step="1000" value="150000">
     </label>
-    <select id="sort">
+    <select id="sort" aria-label="Sort">
       <option value="price-asc">Price: low → high</option>
       <option value="price-desc">Price: high → low</option>
       <option value="range-desc">Range: longest</option>
@@ -63,38 +68,52 @@
 
 <section id="compare">
   <h2>Compare</h2>
-  <p class="muted">Tick “Compare” on up to 3 cars.</p>
+  <p class="muted">Tick “Compare” on up to 3 cars. Best value in each row is highlighted.</p>
   <div id="compareBox" class="table-wrap"></div>
 </section>
 
 <section id="finance">
   <h2>Finance calculator</h2>
   <div class="calc">
-    <label>Car
-      <select id="calcCar"></select>
-    </label>
-    <label>Down payment: <b id="dpVal"></b>
-      <input id="dp" type="range" min="0" max="50" value="20">
-    </label>
-    <label>Term: <b id="termVal"></b>
-      <input id="term" type="range" min="12" max="84" step="12" value="60">
-    </label>
-    <label>APR: <b id="aprVal"></b>
-      <input id="apr" type="range" min="0" max="12" step="0.5" value="4.5">
-    </label>
-    <div class="result"><span>Estimated monthly</span><b id="monthly"></b></div>
+    <label>Car <select id="calcCar"></select></label>
+    <label>Down payment: <b id="dpVal"></b><input id="dp" type="range" min="0" max="50" value="20"></label>
+    <label>Term: <b id="termVal"></b><input id="term" type="range" min="12" max="84" step="12" value="60"></label>
+    <label>APR: <b id="aprVal"></b><input id="apr" type="range" min="0" max="12" step="0.5" value="4.5"></label>
+    <div class="result"><span>Estimated monthly</span><b id="monthly"></b><small id="totalInfo"></small></div>
   </div>
+</section>
+
+<section id="contact">
+  <h2>Book a test drive</h2>
+  <form id="tdForm" class="calc" novalidate>
+    <label>Full name<input name="name" required placeholder="Jane Doe"></label>
+    <label>Email<input name="email" type="email" required placeholder="jane@email.com"></label>
+    <label>Phone<input name="phone" type="tel" placeholder="+62 ..."></label>
+    <label>Model <select id="tdCar" name="car"></select></label>
+    <label>Preferred date<input name="date" type="date" required></label>
+    <label>Time <select name="time"><option>09:00</option><option>11:00</option><option>13:00</option><option>15:00</option><option>17:00</option></select></label>
+    <button class="btn" type="submit" style="grid-column:1/-1">Request test drive</button>
+    <p id="tdMsg" class="form-msg" role="status"></p>
+  </form>
 </section>
 </main>
 
 <div id="modal" class="modal" hidden>
-  <div class="modal-card">
+  <div class="modal-card" role="dialog" aria-modal="true">
     <button id="closeModal" class="icon-btn close" aria-label="Close">✕</button>
     <div id="modalBody"></div>
   </div>
 </div>
 
-<footer>© 2026 Aurora Motors · Demo project</footer>
+<footer>
+  <div class="foot">
+    <div><div class="logo">⚡ Aurora<span>Motors</span></div><p class="muted">Demo showroom · fictional brand. Images are AI-generated.</p></div>
+    <div><b>Showroom</b><p class="muted">Jl. Sudirman 88, Jakarta<br>Mon–Sat 09:00–19:00</p></div>
+    <div><b>Contact</b><p class="muted">hello@auroramotors.demo<br>+62 21 5555 0123</p></div>
+  </div>
+  <p class="copy">© 2026 Aurora Motors</p>
+</footer>
+<script src="js/data.js"></script>
 <script src="js/app.js"></script>
 </body>
 </html>
